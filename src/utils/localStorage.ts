@@ -1,3 +1,7 @@
+export const PRODUCT_KEY_NAME = "S_SHOP_PRODUCTS";
+export const SHOPS_KEY_NAME = "S_SHOP_SHOPS";
+export const CART_KEY_NAME = "S_SHOP_CART";
+
 const LocalStorageSet = (key: string, value: string) => {
   try {
     localStorage.setItem(key, value);
@@ -9,7 +13,7 @@ const LocalStorageSet = (key: string, value: string) => {
 const LocalStorageGet = (key: string) => {
   try {
     const result = localStorage.getItem(key);
-    return result || "";
+    return result;
   } catch (error) {
     console.log(error);
   }

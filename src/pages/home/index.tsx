@@ -46,19 +46,7 @@ const Home: React.FC = () => {
 
         {!(products.items.length > 0) && (
           <>
-            <li>
-              <p>lorem ipsun</p>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non,
-                atque aut. Sit molestiae incidunt consectetur. Repellendus
-                dicta, asperiores alias assumenda impedit ut voluptatem?
-                Necessitatibus aliquid quaerat est neque doloremque nulla.
-              </p>
-              <div>
-                <button type="button">Quantidade</button>
-                <button type="button">Adicionar</button>
-              </div>
-            </li>
+            <p>Nothing to See here</p>
           </>
         )}
       </ul>

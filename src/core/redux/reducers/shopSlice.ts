@@ -1,4 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  LocalStorageGet,
+  LocalStorageSet,
+  SHOPS_KEY_NAME,
+} from "../../../utils/localStorage";
 
 export interface itemShopState {
   id: string;
@@ -11,8 +16,11 @@ export interface ShopState {
   items: itemShopState[];
 }
 
+const ShopLocal: ShopState =
+  JSON.parse(LocalStorageGet(SHOPS_KEY_NAME)) || ({} as ShopState);
+
 const initialState: ShopState = {
-  items: [] as itemShopState[],
+  items: ShopLocal?.items || ([] as itemShopState[]),
 };
 
 export const shopSlice = createSlice({
@@ -20,17 +28,15 @@ export const shopSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<itemShopState>) => {
-      const filtered = state.items.filter(
-        (item: itemShopState) => item.name === action.payload.name
-      );
-      if (filtered.length > 0) return state;
       state.items.push(action.payload);
+      LocalStorageSet(SHOPS_KEY_NAME, JSON.stringify(state));
     },
     remove: (state, action: PayloadAction<itemShopState>) => {
       const filtered = state.items.filter(
         (item: itemShopState) => item.name !== action.payload.name
       );
       state.items = filtered;
+      LocalStorageSet(SHOPS_KEY_NAME, JSON.stringify(state));
     },
   },
 });

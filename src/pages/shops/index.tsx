@@ -1,7 +1,12 @@
 import React from "react";
+import { useAppDispatch, useAppSelector } from "../../core/redux/hooks";
+import { itemShopState } from "../../core/redux/reducers/shopSlice";
 import { Container } from "./styles";
 
 const Shops: React.FC = () => {
+  const shops = useAppSelector((state) => state.shops);
+  const dispatch = useAppDispatch();
+
   return (
     <Container>
       <div className="top_crumb">
@@ -14,31 +19,16 @@ const Shops: React.FC = () => {
           <strong>QTD</strong>
           <strong>Total</strong>
         </li>
-        <li>
-          <p>mariovarela99</p>
-          <p>5</p>
-          <p>R$1000</p>
-        </li>
-        <li>
-          <p>mariovarela99</p>
-          <p>5</p>
-          <p>R$1000</p>
-        </li>
-        <li>
-          <p>mariovarela99</p>
-          <p>5</p>
-          <p>R$1000</p>
-        </li>
-        <li>
-          <p>mariovarela99</p>
-          <p>5</p>
-          <p>R$1000</p>
-        </li>
-        <li>
-          <p>mariovarela99</p>
-          <p>5</p>
-          <p>R$1000</p>
-        </li>
+
+        {shops.items.map((item: itemShopState) => (
+          <li key={item.id}>
+            <p> {item.name} </p>
+            <p> {item.qtd} </p>
+            <p> {item.total} </p>
+          </li>
+        ))}
+
+        {!(shops.items.length > 0) && <p>Nothing To see Here</p>}
       </ul>
     </Container>
   );

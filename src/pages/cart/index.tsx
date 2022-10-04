@@ -1,12 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "../../core/redux/hooks";
-import { itemCartState, remove } from "../../core/redux/reducers/cartSlice";
+import {
+  clear as ClearCart,
+  itemCartState,
+  remove,
+} from "../../core/redux/reducers/cartSlice";
+import {
+  add as addToShops,
+  itemShopState,
+} from "../../core/redux/reducers/shopSlice";
 import { Container, FormName } from "./styles";
+import { v4 as uuidv4 } from "uuid";
 
 const Cart: React.FC = () => {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
+  const [total, setTotal] = useState<number>();
+  const [qtd, setQtd] = useState<number>();
+  const [name, setName] = useState<string>();
+  const [shop, setShop] = useState<itemShopState>();
+
+  useEffect(() => {
+    let sum = 0;
+    let _qtd = 0;
+    cart.items.map((item) => {
+      sum += item.price;
+      _qtd += item.qtd;
+    });
+    setTotal(sum);
+    setQtd(_qtd);
+  }, [cart]);
+
+  const checkOut = () => {
+    let id = uuidv4();
+    setShop({
+      id,
+      name,
+      qtd,
+      total,
+    });
+  };
+
+  useEffect(() => {
+    if (name && cart.items.length > 0) {
+      dispatch(addToShops(shop || ({} as itemShopState)));
+
+      setName("");
+      setQtd(0);
+      setTotal(0);
+      setShop({} as itemShopState);
+      dispatch(ClearCart());
+    }
+  }, [shop]);
 
   return (
     <Container>
@@ -15,7 +61,14 @@ const Cart: React.FC = () => {
       </div>
       <FormName>
         <label htmlFor="name"> Nome </label>
-        <input type="text" name="name" id="name" placeholder="Nome" />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </FormName>
       <ul>
         <li>
@@ -44,31 +97,20 @@ const Cart: React.FC = () => {
         ))}
 
         {!(cart.items.length > 0) && (
-          <li>
-            <p>3</p>
-            <p>lorem ipsun</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-              doloremque excepturi, quidem labore consectetur perspiciatis animi
-              et maxime maiores corrupti quam iure, sequi nobis eligendi aliquid
-              officia eos tempore? Quidem.
-            </p>
-            <p>$ 3.00</p>
-            <p>
-              <button type="button">
-                <FaTimes color="rgba(255, 0, 0, 0.7)" />
-              </button>
-            </p>
-          </li>
+          <>
+            <p>Nothing To See here</p>
+          </>
         )}
       </ul>
 
       <div className="actions">
         <div>
           <strong>Total</strong>
-          <span> R$ 9.00 </span>
+          <span> R$ {total} </span>
         </div>
-        <button>Finalizar Compra</button>
+        <button type="button" onClick={() => checkOut()}>
+          Finalizar Compra
+        </button>
       </div>
     </Container>
   );

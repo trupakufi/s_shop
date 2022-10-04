@@ -108,23 +108,7 @@ const Products: React.FC = () => {
           </li>
         ))}
 
-        {!(products.items.length > 0) && (
-          <li>
-            <p>lorem ipsun</p>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Provident repellendus, maxime cupiditate impedit explicabo minus
-              nam voluptate consectetur facilis, saepe commodi dolore porro a
-              esse consequatur ad modi earum. Amet!
-            </p>
-            <p>R$ 3.0</p>
-            <p>
-              <button>
-                <FaTimes />
-              </button>
-            </p>
-          </li>
-        )}
+        {!(products.items.length > 0) && <p> Nothing to See here </p>}
       </ul>
     </Container>
   );
