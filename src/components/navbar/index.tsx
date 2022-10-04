@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import { Container } from "./styles";
 
 const Navbar: React.FC = () => {
@@ -7,19 +7,19 @@ const Navbar: React.FC = () => {
     <Container>
       <ul>
         <li>
-          <a href="/"> Home </a>
+          <Link to="/"> Home </Link>
         </li>
 
         <li>
-          <a href="/cart"> Cesta </a>
+          <Link to="/cart"> Cesta </Link>
         </li>
 
         <li>
-          <a href="/products"> Produtos </a>
+          <Link to="/products"> Produtos </Link>
         </li>
 
         <li>
-          <a href="/shops"> Compras </a>
+          <Link to="/shops"> Compras </Link>
         </li>
       </ul>
     </Container>
