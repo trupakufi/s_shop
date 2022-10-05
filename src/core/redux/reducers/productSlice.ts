@@ -44,7 +44,20 @@ export const productSlice = createSlice({
       state.items = filtered;
       LocalStorageSet(PRODUCT_KEY_NAME, JSON.stringify(state));
     },
-    edit: () => {},
+    edit: (
+      state,
+      action: PayloadAction<{ id: string; newProduct: itemProductState }>
+    ) => {
+      const filtered = state.items.filter(
+        (item: itemProductState) => item.id !== action.payload.id
+      );
+      if (filtered.length === 0) return state;
+      const index = state.items.findIndex(
+        (item: itemProductState) => item.id === action.payload.id
+      );
+      state.items[index] = action.payload.newProduct;
+      LocalStorageSet(PRODUCT_KEY_NAME, JSON.stringify(state));
+    },
   },
 });
 

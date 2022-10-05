@@ -17,6 +17,7 @@ const Routes: React.FC = () => {
         ) : (
           <>
             <Route path="/products" element={<Pages.Products />} />
+            <Route path="/products/edit/:id" element={<Pages.EditProduct />} />
             <Route path="/shops" element={<Pages.Shops />} />
           </>
         )}

@@ -13,6 +13,7 @@ export const Container = styled.div`
       font-size: 14px;
       color: #23232399;
       font-weight: 400;
+      text-transform: capitalize;
     }
 
     div.search_container {
@@ -61,6 +62,7 @@ export const Container = styled.div`
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        text-transform: capitalize;
       }
 
       div {

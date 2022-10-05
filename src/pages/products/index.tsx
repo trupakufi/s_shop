@@ -1,5 +1,6 @@
-import React, { FormEvent, FormEventHandler, useEffect, useState } from "react";
-import { FaPlus, FaTimes } from "react-icons/fa";
+import React, { FormEvent, useEffect, useState } from "react";
+import { FaEdit, FaPlus, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../core/redux/hooks";
 import {
@@ -99,6 +100,10 @@ const Products: React.FC = () => {
             <p>{item.desc}</p>
             <p>{item.price}</p>
             <p>
+              <Link to={`edit/${item.id}`}>
+                <FaEdit />
+              </Link>
+
               <button
                 type="button"
                 onClick={() => dispatch(remove({ id: item.id }))}

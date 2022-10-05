@@ -18,7 +18,7 @@ export const Container = styled.header`
 
 export const HeaderOptions = styled.div`
   width: 150px;
-  height: 100px;
+  height: 120px;
   box-shadow: 2px 3px 3px 5px #c4c4c4;
   background: #ffffff;
 

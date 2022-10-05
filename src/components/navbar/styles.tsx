@@ -23,6 +23,12 @@ export const Container = styled.aside`
         color: #323232;
         line-height: 50px;
         font-weight: 700;
+
+        span {
+          height: 40px;
+          width: 40px;
+          margin-left: 10px;
+        }
       }
     }
   }

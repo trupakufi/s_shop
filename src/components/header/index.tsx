@@ -34,6 +34,8 @@ const Header: React.FC = () => {
         <button type="button" onClick={() => handleChangeUser()}>
           Change
         </button>
+
+        <p>Acting Like: {auth.user === UserType.normal ? "Client" : "Admin"}</p>
       </HeaderOptions>
     </Container>
   );

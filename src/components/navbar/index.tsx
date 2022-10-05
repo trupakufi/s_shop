@@ -6,6 +6,7 @@ import { Container } from "./styles";
 
 const Navbar: React.FC = () => {
   const auth = useAppSelector((state) => state.auth);
+  const cart = useAppSelector((state) => state.cart);
   return (
     <Container>
       <ul>
@@ -16,7 +17,9 @@ const Navbar: React.FC = () => {
             </li>
 
             <li>
-              <Link to="/cart"> Cesta </Link>
+              <Link to="/cart">
+                Cesta <span> {cart.items.length} </span>
+              </Link>
             </li>
           </>
         ) : (

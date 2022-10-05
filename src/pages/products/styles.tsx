@@ -8,6 +8,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    text-transform: capitalize;
 
     strong {
       color: #00000090;
@@ -50,9 +51,17 @@ export const Container = styled.div`
         text-overflow: ellipsis;
         overflow: hidden;
         line-height: 30px;
+        text-transform: capitalize;
 
         button {
           color: rgba(255, 0, 0, 0.6);
+          font-size: 14px;
+        }
+
+        a {
+          color: #232323;
+          font-size: 14px;
+          margin-right: 10px;
         }
       }
 

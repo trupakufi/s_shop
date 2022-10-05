@@ -49,6 +49,7 @@ export const Container = styled.div`
       strong,
       p {
         width: 33.3333333339%;
+        text-transform: capitalize;
       }
     }
   }
