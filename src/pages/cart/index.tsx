@@ -36,9 +36,9 @@ const Cart: React.FC = () => {
     let id = uuidv4();
     setShop({
       id,
-      name,
-      qtd,
-      total,
+      name: name || "",
+      qtd: qtd || cart.items.length,
+      total: total || 0,
     });
   };
 

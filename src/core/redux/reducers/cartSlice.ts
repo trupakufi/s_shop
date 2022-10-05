@@ -9,7 +9,7 @@ export interface itemCartState {
   id: string;
   qtd: number;
   product: string;
-  desc: number;
+  desc: string;
   price: number;
 }
 

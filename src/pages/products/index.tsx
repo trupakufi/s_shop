@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useEffect, useState } from "react";
+import React, { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../core/redux/hooks";
@@ -17,15 +17,16 @@ const Products: React.FC = () => {
   const [desc, setDesc] = useState<string>();
   const [price, setPrice] = useState<number>();
 
-  const handleSubmit = (e: FormEventHandler) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     let id = uuidv4();
     setNewProduct({
       id,
-      product,
-      desc,
-      price,
+      product: product || "",
+      desc: desc || "",
+      price: price || 0.99,
+      qtd: 1,
     });
   };
 
@@ -34,7 +35,7 @@ const Products: React.FC = () => {
       dispatch(add(newProduct || ({} as itemProductState)));
       setProduct("");
       setDesc("");
-      setPrice("");
+      setPrice(0);
     }
   }, [newProduct]);
 

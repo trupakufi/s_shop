@@ -13,6 +13,10 @@ const LocalStorageSet = (key: string, value: string) => {
 const LocalStorageGet = (key: string) => {
   try {
     const result = localStorage.getItem(key);
+    if (!result) {
+      LocalStorageSet(key, JSON.stringify({}));
+      LocalStorageGet(key);
+    }
     return result;
   } catch (error) {
     console.log(error);

@@ -37,7 +37,20 @@ const Home: React.FC = () => {
             <p>{item.desc}</p>
             <div>
               <button type="button"> Quantidade: {item.qtd}</button>
-              <button type="button" onClick={() => dispatch(addToCart(item))}>
+              <button
+                type="button"
+                onClick={() =>
+                  dispatch(
+                    addToCart({
+                      id: item.id,
+                      product: item.product,
+                      desc: item.desc,
+                      price: item.price,
+                      qtd: item.qtd,
+                    })
+                  )
+                }
+              >
                 Adicionar
               </button>
             </div>
