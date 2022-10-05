@@ -13,8 +13,7 @@ const Header: React.FC = () => {
 
   const handleChangeUser = () => {
     dispatch(change());
-    if (auth.user === UserType.admin) navigate("/");
-    else navigate("/products");
+    navigate("/");
     setShowOptions(false);
   };
 

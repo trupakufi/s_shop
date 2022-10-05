@@ -16,8 +16,8 @@ const Routes: React.FC = () => {
           </>
         ) : (
           <>
-            <Route path="/products" element={<Pages.Products />} />
-            <Route path="/products/edit/:id" element={<Pages.EditProduct />} />
+            <Route path="/" element={<Pages.Products />} />
+            <Route path="/edit/:id" element={<Pages.EditProduct />} />
             <Route path="/shops" element={<Pages.Shops />} />
           </>
         )}

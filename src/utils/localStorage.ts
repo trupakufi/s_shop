@@ -1,6 +1,7 @@
 export const PRODUCT_KEY_NAME = "S_SHOP_PRODUCTS";
 export const SHOPS_KEY_NAME = "S_SHOP_SHOPS";
 export const CART_KEY_NAME = "S_SHOP_CART";
+export const AUTH_KEY_NAME = "S_SHOP_USER";
 
 const LocalStorageSet = (key: string, value: string) => {
   try {
