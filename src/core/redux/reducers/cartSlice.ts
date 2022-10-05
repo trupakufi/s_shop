@@ -4,6 +4,7 @@ import {
   LocalStorageGet,
   LocalStorageSet,
 } from "../../../utils/localStorage";
+import { toast } from "react-toastify";
 
 export interface itemCartState {
   id: string;
@@ -35,6 +36,7 @@ export const cartSlice = createSlice({
       if (filtered.length > 0) return state;
       state.items.push(action.payload);
       LocalStorageSet(CART_KEY_NAME, JSON.stringify(state));
+      toast.success("Produto Adicionado ao Carrinho com sucesso");
     },
     remove: (state, action: PayloadAction<{ id: string }>) => {
       const filtered = state.items.filter(
@@ -42,11 +44,13 @@ export const cartSlice = createSlice({
       );
       state.items = filtered;
       LocalStorageSet(CART_KEY_NAME, JSON.stringify(state));
+      toast.success("Produto Removido do Carrinho com sucesso");
     },
     edit: () => {},
     clear: (state) => {
       state.items = [] as itemCartState[];
       LocalStorageSet(CART_KEY_NAME, JSON.stringify(state));
+      toast.success("Carrinho limpo com sucesso");
     },
   },
 });

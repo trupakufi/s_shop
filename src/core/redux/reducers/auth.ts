@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 export enum UserType {
   "normal",
@@ -20,6 +21,7 @@ export const authSlice = createSlice({
     change: (state) => {
       if (state.user === UserType.admin) state.user = UserType.normal;
       else state.user = UserType.admin;
+      toast.success("User Changed");
     },
   },
 });

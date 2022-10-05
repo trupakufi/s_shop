@@ -4,6 +4,7 @@ import {
   LocalStorageSet,
   PRODUCT_KEY_NAME,
 } from "../../../utils/localStorage";
+import { toast } from "react-toastify";
 
 export interface itemProductState {
   id: string;
@@ -36,6 +37,7 @@ export const productSlice = createSlice({
       if (filtered.length > 0) return state;
       state.items.push(action.payload);
       LocalStorageSet(PRODUCT_KEY_NAME, JSON.stringify(state));
+      toast.success("Produto Criado com Sucesso");
     },
     remove: (state, action: PayloadAction<{ id: string }>) => {
       const filtered = state.items.filter(
@@ -43,6 +45,7 @@ export const productSlice = createSlice({
       );
       state.items = filtered;
       LocalStorageSet(PRODUCT_KEY_NAME, JSON.stringify(state));
+      toast.success("Produto deletado com Sucesso");
     },
     edit: (
       state,
@@ -51,12 +54,16 @@ export const productSlice = createSlice({
       const filtered = state.items.filter(
         (item: itemProductState) => item.id !== action.payload.id
       );
-      if (filtered.length === 0) return state;
+      if (filtered.length === 0) {
+        toast.error("Erro ao eliminar produto");
+        return state;
+      }
       const index = state.items.findIndex(
         (item: itemProductState) => item.id === action.payload.id
       );
       state.items[index] = action.payload.newProduct;
       LocalStorageSet(PRODUCT_KEY_NAME, JSON.stringify(state));
+      toast.success("Produto Editado com Sucesso");
     },
   },
 });
