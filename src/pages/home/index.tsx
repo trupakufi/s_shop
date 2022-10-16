@@ -1,9 +1,9 @@
-import React, { FormEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Container } from "./styles";
-import { useAppSelector, useAppDispatch } from "../../core/redux/hooks";
-import { itemProductState } from "../../core/redux/reducers/productSlice";
+import { useAppDispatch, useAppSelector } from "../../core/redux/hooks";
 import { add as addToCart } from "../../core/redux/reducers/cartSlice";
+import { itemProductState } from "../../core/redux/reducers/productSlice";
+import { Container } from "./styles";
 
 const Home: React.FC = () => {
   const products = useAppSelector((state) => state.products);
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
             ))
           : products.items.map(
               (item: itemProductState) =>
-                item.product.includes(search) && (
+                item.product.toLowerCase().includes(search.toLowerCase()) && (
                   <li key={item.id}>
                     <p>{item.product}</p>
                     <p>{item.desc}</p>
