@@ -15,8 +15,7 @@ export interface authState {
   user: UserType;
 }
 
-const AuthLocal: authState =
-  JSON.parse(LocalStorageGet(AUTH_KEY_NAME)) || ({} as authState);
+const AuthLocal: authState = JSON.parse(LocalStorageGet(AUTH_KEY_NAME) || "{}");
 
 const initialState: authState = {
   user: AuthLocal.user || UserType.normal,

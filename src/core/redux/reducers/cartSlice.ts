@@ -18,8 +18,7 @@ export interface CartState {
   items: itemCartState[];
 }
 
-const CartLocal: CartState =
-  JSON.parse(LocalStorageGet(CART_KEY_NAME)) || ({} as CartState);
+const CartLocal: CartState = JSON.parse(LocalStorageGet(CART_KEY_NAME) || "{}");
 
 const initialState: CartState = {
   items: CartLocal?.items || ([] as itemCartState[]),
