@@ -11,11 +11,13 @@ import { Container, ProductForm } from "../styles";
 const EditProduct: React.FC = () => {
   const products = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
-  const [newProduct, setNewProduct] = useState<itemProductState>();
+  const [newProduct, setNewProduct] = useState<itemProductState>(
+    {} as itemProductState
+  );
   const [product, setProduct] = useState<string>();
   const [desc, setDesc] = useState<string>();
   const [price, setPrice] = useState<number>();
-  const { id } = useParams();
+  const { id = "" } = useParams();
 
   useEffect(() => {
     const [productToEdit] = products.items.filter(

@@ -18,8 +18,9 @@ export interface ProductState {
   items: itemProductState[];
 }
 
-const ProductsLocal: ProductState =
-  JSON.parse(LocalStorageGet(PRODUCT_KEY_NAME)) || ({} as ProductState);
+const ProductsLocal: ProductState = JSON.parse(
+  LocalStorageGet(PRODUCT_KEY_NAME) || "{}"
+);
 
 const initialState: ProductState = {
   items: ProductsLocal?.items || ([] as itemProductState[]),

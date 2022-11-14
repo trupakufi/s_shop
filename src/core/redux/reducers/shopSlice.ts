@@ -17,8 +17,9 @@ export interface ShopState {
   items: itemShopState[];
 }
 
-const ShopLocal: ShopState =
-  JSON.parse(LocalStorageGet(SHOPS_KEY_NAME)) || ({} as ShopState);
+const ShopLocal: ShopState = JSON.parse(
+  LocalStorageGet(SHOPS_KEY_NAME) || "{}"
+);
 
 const initialState: ShopState = {
   items: ShopLocal?.items || ([] as itemShopState[]),
